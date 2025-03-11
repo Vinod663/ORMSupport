@@ -63,13 +63,13 @@ public class Main {
         laptop.setLid(1);
         laptop.setName("Dell");
 
-        Laptop laptop2 = new Laptop();
-        laptop2.setLid(2);
-        laptop2.setName("Hp");
+        Laptop laptop1 = new Laptop();
+        laptop1.setLid(2);
+        laptop1.setName("Hp");
 
         List<Laptop> laptops = new ArrayList<>();
         laptops.add(laptop);
-        laptops.add(laptop2);
+        laptops.add(laptop1);
 
         Student student = new Student();
         student.setId(1);
@@ -77,12 +77,23 @@ public class Main {
         student.setAddress("Galle");
         student.setLaptop(laptops);
 
-        laptop.setStudent(student);//laptop ekata related stuednt kawda kiyala kiwwe nathnm ekata null value ekak dagannawa
-        laptop2.setStudent(student);
+        Student student1 = new Student();
+        student1.setId(2);
+        student1.setName("Namal");
+        student1.setAddress("Colombo");
+        student1.setLaptop(laptops);
 
-        session.persist(laptop);
-        session.persist(laptop2);
-        session.persist(student);
+        List<Student> students = new ArrayList<>();
+        students.add(student);
+        students.add(student1);
+
+        laptop.setStudent(students);
+        laptop1.setStudent(students);
+
+        session.save(laptop);
+        session.save(laptop1);
+        session.save(student);
+        session.save(student1);
 
         transaction.commit();
         session.close();

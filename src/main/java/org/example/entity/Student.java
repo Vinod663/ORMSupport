@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -14,7 +11,7 @@ public class Student {
     private String name;
     private String address;
 
-    @OneToMany(mappedBy = "student")
+   @ManyToMany
     private List<Laptop> laptop;
 
 
@@ -60,6 +57,4 @@ public class Student {
     public void setLaptop(List<Laptop> laptop) {
         this.laptop = laptop;
     }
-
-
 }

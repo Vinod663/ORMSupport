@@ -1,9 +1,8 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Laptop {
@@ -11,14 +10,13 @@ public class Laptop {
     private int lid;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @ManyToMany(mappedBy = "laptop")
+    private List<Student> student;
 
     public Laptop() {
     }
 
-    public Laptop(int lid, String name, Student student) {
+    public Laptop(int lid, String name, List<Student> student) {
         this.lid = lid;
         this.name = name;
         this.student = student;
@@ -40,11 +38,11 @@ public class Laptop {
         this.name = name;
     }
 
-    public Student getStudent() {
+    public List<Student> getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(List<Student> student) {
         this.student = student;
     }
 }
