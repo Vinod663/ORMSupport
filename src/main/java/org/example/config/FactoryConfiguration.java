@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.entity.Laptop;
 import org.example.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +14,8 @@ public class FactoryConfiguration {
 
     private FactoryConfiguration(){
         Configuration configuration = new Configuration().configure()
-                .addAnnotatedClass(Student.class);
+                .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Laptop.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 

@@ -2,6 +2,7 @@ package org.example.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -9,14 +10,25 @@ public class Student {
     private int id;
     private String name;
     private String address;
+    @OneToOne
+    private Laptop laptop;
 
-    public Student(int id, String name, String address) {
+    public Student(int id, String name, String address, Laptop laptop) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.laptop = laptop;
     }
 
     public Student() {
+    }
+
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
     }
 
     public int getId() {
@@ -49,6 +61,7 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", laptop=" + laptop +
                 '}';
     }
 }
