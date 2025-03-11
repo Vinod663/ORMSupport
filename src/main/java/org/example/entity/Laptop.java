@@ -2,6 +2,8 @@ package org.example.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -9,12 +11,17 @@ public class Laptop {
     private int lid;
     private String name;
 
-    public Laptop(int lid, String name) {
-        this.lid = lid;
-        this.name = name;
-    }
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     public Laptop() {
+    }
+
+    public Laptop(int lid, String name, Student student) {
+        this.lid = lid;
+        this.name = name;
+        this.student = student;
     }
 
     public int getLid() {
@@ -33,11 +40,11 @@ public class Laptop {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Laptop{" +
-                "lid=" + lid +
-                ", name='" + name + '\'' +
-                '}';
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }
